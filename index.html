@@ -81,7 +81,7 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
 <main>
 <section id="peta" class="on">
  <div class="filters" id="fl"></div>
- <div class="row"><div id="mapwrap"><div id="map"></div><svg id="ln"></svg><div id="cards"></div>
+ <div class="row"><div id="mapwrap"><div id="map"></div><div id="ln"></div><div id="cards"></div>
   <div class="leg"><b>IUCN:</b><i style="background:var(--CR)"></i>Kritis<i style="background:var(--EN)"></i>Terancam<i style="background:var(--VU)"></i>Rentan<i style="background:var(--LC)"></i>Risiko rendah<i style="background:var(--NE)"></i>Belum dievaluasi<br><i style="background:#ff8c00"></i>Titik panas VIIRS (NASA FIRMS, sesuai periode terpilih)</div></div>
   <aside id="side"></aside></div>
 </section>
@@ -220,9 +220,18 @@ const setFire=v=>{fw&&fw.remove();fw=v?firms('fires_viirs_'+v).addTo(map):null};
 const per=()=>document.getElementById('fp').value||7;
 /* ===== kartu detail dengan garis penghubung (mode pulau) ===== */
 let cp=0;
-function lines(){const n=document.getElementById('ln');n.innerHTML=[...document.querySelectorAll('.mc')].map(c=>{const a=D[c.dataset.i],p=map.latLngToContainerPoint([a[6],a[7]]),x=c.offsetLeft+(c.classList.contains('l')?c.offsetWidth:0),y=c.offsetTop+c.offsetHeight/2,k=ST[a[5]][1];return `<path d="M${x},${y}L${p.x},${p.y}" fill="none" style="stroke:${k};stroke-width:2;stroke-dasharray:5 4"/><circle cx="${p.x}" cy="${p.y}" r="22" fill="none" style="stroke:${k};stroke-width:2"/>`}).join('')}
+function lines(){
+ const n=document.getElementById('ln');
+ n.innerHTML=`<svg style="width:100%;height:100%;pointer-events:none">` + 
+ [...document.querySelectorAll('.mc')].map(c=>{
+  const a=D[c.dataset.i],p=map.latLngToContainerPoint([a[6],a[7]]),
+  x=c.offsetLeft+(c.classList.contains('l')?c.offsetWidth:0),
+  y=c.offsetTop+c.offsetHeight/2,k=ST[a[5]][1];
+  return `<path d="M${x},${y}L${p.x},${p.y}" fill="none" style="stroke:${k};stroke-width:2;stroke-dasharray:5 4"/><circle cx="${p.x}" cy="${p.y}" r="22" fill="none" style="stroke:${k};stroke-width:2"/>`
+ }).join('') + `</svg>`;
+}
 function cards(){const w=document.getElementById('cards');document.getElementById('mapwrap').classList.toggle('cm',!!S.p);
- if(!S.p){w.innerHTML='';return lines()}
+ // if(!S.p){w.innerHTML='';return lines()}
  const all=D.map((a,i)=>[a,i]).filter(x=>vis(x[0])).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]);
  const H=map.getSize().y,n=Math.max(2,Math.min(4,Math.floor((H-110)/175))),pp=2*n,pages=Math.max(1,Math.ceil(all.length/pp));
  cp=Math.max(0,Math.min(cp,pages-1));const ci=all.slice(cp*pp,cp*pp+pp).map(x=>x[1]);
@@ -233,7 +242,7 @@ function cards(){const w=document.getElementById('cards');document.getElementByI
   return `<div class="mc ${sd}" data-i="${i}" style="top:${52+k*sv}px;height:${ch}px" onclick="show(${i})"><div class="sm">■ ${a[4].toUpperCase()}</div><div class="photo" id="m${i}" style="height:${ph}px">${a[3]}</div><b>${a[1]}</b><div class="sm"><i>${a[2]}</i></div><span class="badge" style="background:${t[1]}">${t[0]} (${a[5]})</span><div class="ds">${a[10]}</div></div>`}).join('');
  w.innerHTML=col(pts.slice(0,h),'l')+col(pts.slice(h),'r')+`<div class="pg"><button class="chip" onclick="cp--;cards()">‹</button>${cp+1} / ${pages} · ${all.length} spesies<button class="chip" onclick="cp++;cards()">›</button></div>`;
  ci.forEach(i=>photo(D[i][8],document.getElementById('m'+i),D[i][3],D[i][1]));lines()}
-map.on('move zoom resize',lines);
+map.on('move moveend zoom zoomend resize', lines);
 function tgl(v){const w=side.style.display!='none',o=v===undefined?!w:v;side.style.display=o?'':'none';document.getElementById('bl').classList.toggle('on',o);if(w!=o)setTimeout(()=>{map.invalidateSize();cards()},60)}
 let sm,sl,si=0;
 function openSt(i){si=(i%7+7)%7;const p=ISL[si],v=IS[p],it=D.filter(a=>a[4]==p);document.getElementById('st').classList.add('on');
