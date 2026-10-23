@@ -102,8 +102,10 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
   <li><b>Catatan konsep:</b> <i>area terbakar</i> (hektare, dihitung dari citra satelit bulanan) berbeda dengan <i>titik panas</i> (anomali suhu sesaat). Data ini area terbakar.</li></ul></div>
  <div class="card"><b>Sumber & data lengkap:</b><br>
   <a class="btn" target="_blank" rel="noopener" href="https://fire.mapbiomas.id/id">MapBiomas Fire Indonesia</a>
-  <a class="btn" target="_blank" rel="noopener" href="https://kobong.mapbiomas.id">Platform peta bulanan</a>
-  <a class="btn" target="_blank" rel="noopener" href="https://fire.mapbiomas.id/storage/files/factsheet/CCkUalu5dO0VLJllHkUQib5Xwa1gwRrYXu1uhhwg.pdf">Factsheet (PDF)</a></div>
+  <a class="btn" target="_blank" rel="noopener" href="https://kobong.mapbiomas.id">Platform peta bulanan daerah terbakar di Indoensia</a>
+  <a class="btn" target="_blank" rel="noopener" href="https://sipongi.gakkum.kehutanan.go.id/peta">SiPongi Karhutla Monitoring System</a>
+  <a class="btn" target="_blank" rel="noopener" href="https://goodstats.id/pantau/sebaran-titik-api">Goodstats | Sebaran titik api </a>
+  <a class="btn" target="_blank" rel="noopener" href="https://firms.modaps.eosdis.nasa.gov/">NASA FIRMS</a></div>
  <div class="card"><b>Diskusi:</b> Mengapa pola kebakaran Papua/NTT berbeda dari Sumatera/Kalimantan? Mitigasi apa yang cocok untuk masing-masing pola?</div>
 </section>
 
@@ -212,7 +214,7 @@ const IS={"Sumatera":[51380,23702,"Gambut Sumatera masih membara","Sumsel termas
 const KAB=[["Merauke",-8.5,140.4,107763],["Sumba Timur",-9.9,120.2,59118],["Mappi",-6.9,139.4,34449],["Sumba Tengah",-9.6,119.5,31416],["Ketapang",-1.8,110.6,28304],["Bima",-8.5,118.7,12311],["Buru",-3.3,126.6,11793],["Banjar",-3.3,115,9031],["Sukamara",-2.6,111.2,7795],["Bombana",-4.6,121.9,7168]];
 /* ===== NASA FIRMS WMS (titik panas VIIRS) ===== */
 const KEY='7b47232b8fa967cb378e2f3c04ce0866'; /* MAP_KEY FIRMS gratis; terlihat publik bila repo publik */
-const firms=l=>L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/'+KEY+'/',{layers:l,format:'image/png',transparent:true,version:'1.1.1',colors:'255 140 0',size:4,symbols:'circle',attribution:'Titik panas: NASA FIRMS (VIIRS)'});
+const firms=l=>L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/'+KEY+'/',{layers:l,format:'image/png',transparent:true,version:'1.1.1',colors:'255 140 0',size:4,symbols:'circle',attribution:'Titik panas: NASA FIRMS (VIIRS)', bounds: L.latLngBounds([-11, 95], [6, 141])});
 let fw=firms('fires_viirs_7').addTo(map);
 const setFire=v=>{fw&&fw.remove();fw=v?firms('fires_viirs_'+v).addTo(map):null};
 const per=()=>document.getElementById('fp').value||7;
