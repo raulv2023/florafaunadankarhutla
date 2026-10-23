@@ -73,6 +73,16 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
 .pg{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:var(--card);border-radius:99px;padding:4px 10px;display:flex;gap:10px;align-items:center;pointer-events:auto;box-shadow:0 2px 8px #0006;font-size:.85rem}
 #mapwrap.cm .leg{display:none}
 @media(max-width:800px){#cards,#ln{display:none}}
+.mc.cp{display:grid;grid-template-columns:78px 1fr;gap:0 8px;align-content:start}.mc.cp .photo{width:78px;margin:0}.mc .photo{font-size:34px}
+.loc{font-size:.58rem;letter-spacing:.06em;color:var(--ac);font-weight:700;margin-bottom:3px}
+.cr{font-size:.6rem;color:var(--mu);margin-top:3px;line-height:1.2;grid-column:1/-1}.mc.xs .ds{display:none}
+.sd{background:linear-gradient(165deg,#242822,#3b3b33 60%,#1a1c18);color:#fff;border-radius:14px;padding:14px}
+.sd h2{font-size:1.45rem;line-height:1.2;margin:8px 0}.sd h2 span,#sth span{color:#b5e36b}.sd .sm,.sd .mr b{color:#b9bfb8}.sd .big{color:#fff;font-size:1.65rem}.sd .am{color:#ffb000}.sd .mr{grid-template-columns:92px 1fr;font-size:.82rem}
+.lg{display:flex;gap:6px;align-items:center;font-size:.78rem;color:#ddd}.lg i{flex:none;width:9px;height:9px;border-radius:50%;background:#ff8c00}
+#hp{display:none;position:fixed;inset:0;z-index:5000;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);background:rgba(15,25,20,.5);place-items:center;padding:16px}#hp.on{display:grid}
+.hc{max-width:760px;max-height:94vh;overflow:auto;border-radius:22px;padding:34px 40px;color:#fff;background:linear-gradient(180deg,#d4d6d0 0%,#8d948b 45%,#5d5a48 100%);box-shadow:0 20px 60px #0008}
+.hc .k{letter-spacing:.14em;font-size:.8rem;opacity:.9}.hc h1{font-size:2.5rem;line-height:1.15;margin:14px 0}.hc h1 span,.hc h3 span{color:#b5e36b}.hc h3{font-size:1.35rem;font-weight:500;margin:10px 0}.hc p{font-size:1.05rem;opacity:.95}
+.hc .em{font-size:2rem;letter-spacing:.3rem;margin:14px 0}.hc .ft{font-size:.7rem;opacity:.85;border-top:1px solid #fff5;padding-top:10px;margin-top:16px}
 </style>
 </head>
 <body>
@@ -81,7 +91,7 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
 <main>
 <section id="peta" class="on">
  <div class="filters" id="fl"></div>
- <div class="row"><div id="mapwrap"><div id="map"></div><div id="ln"></div><div id="cards"></div>
+ <div class="row"><div id="mapwrap"><div id="map"></div><svg id="ln"></svg><div id="cards"></div>
   <div class="leg"><b>IUCN:</b><i style="background:var(--CR)"></i>Kritis<i style="background:var(--EN)"></i>Terancam<i style="background:var(--VU)"></i>Rentan<i style="background:var(--LC)"></i>Risiko rendah<i style="background:var(--NE)"></i>Belum dievaluasi<br><i style="background:#ff8c00"></i>Titik panas VIIRS (NASA FIRMS, sesuai periode terpilih)</div></div>
   <aside id="side"></aside></div>
 </section>
@@ -102,9 +112,9 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
   <li><b>Catatan konsep:</b> <i>area terbakar</i> (hektare, dihitung dari citra satelit bulanan) berbeda dengan <i>titik panas</i> (anomali suhu sesaat). Data ini area terbakar.</li></ul></div>
  <div class="card"><b>Sumber & data lengkap:</b><br>
   <a class="btn" target="_blank" rel="noopener" href="https://fire.mapbiomas.id/id">MapBiomas Fire Indonesia</a>
-  <a class="btn" target="_blank" rel="noopener" href="https://kobong.mapbiomas.id">Platform peta bulanan daerah terbakar di Indoensia</a>
+  <a class="btn" target="_blank" rel="noopener" href="https://kobong.mapbiomas.id">Platform peta bulanan daerah terbakar di Indonesia</a>
   <a class="btn" target="_blank" rel="noopener" href="https://sipongi.gakkum.kehutanan.go.id/peta">SiPongi Karhutla Monitoring System</a>
-  <a class="btn" target="_blank" rel="noopener" href="https://goodstats.id/pantau/sebaran-titik-api">Goodstats | Sebaran titik api </a>
+  <a class="btn" target="_blank" rel="noopener" href="https://goodstats.id/pantau/sebaran-titik-api">Goodstats | Sebaran titik api</a>
   <a class="btn" target="_blank" rel="noopener" href="https://firms.modaps.eosdis.nasa.gov/">NASA FIRMS</a></div>
  <div class="card"><b>Diskusi:</b> Mengapa pola kebakaran Papua/NTT berbeda dari Sumatera/Kalimantan? Mitigasi apa yang cocok untuk masing-masing pola?</div>
 </section>
@@ -115,6 +125,14 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
 </section>
 </main>
 
+<div id="hp" onclick="hope(0)"><div class="hc" onclick="event.stopPropagation()"><div class="k">🌿 MPI GEOGRAFI · SETELAH API PADAM</div>
+<h1>Sebelum api datang,<br>mereka sudah <span>ada di sini.</span></h1>
+<h3>Semoga api segera padam, dan hutan diberi <span>keajaiban</span> untuk pulih kembali.</h3>
+<div class="em">🐅🐘🦧🦏🦜🌺</div>
+<p>Hujan akan turun, tunas akan tumbuh, dan satwa akan pulang, jika rumah mereka kita jaga mulai dari sekarang. Setiap pohon yang kembali berdiri adalah doa yang dijawab.</p>
+<p><b>Mulai dari yang kecil:</b> tidak membakar lahan, melaporkan titik api, dan menyebarkan ilmu ini kepada orang di sekitarmu.</p>
+<button class="chip on" onclick="hope(0)" style="margin-top:8px">Kembali ke peta</button>
+<div class="ft">Berdasarkan MapBiomas Fire Indonesia (Jan–Agu 2026), NASA FIRMS (VIIRS), SiPongi KLHK, dan IUCN Red List. Foto: Wikimedia Commons (CC BY, CC BY-SA, CC0, domain publik); kredit di tiap foto.</div></div></div>
 <div id="st"><div class="stl"><div class="stt"><b>🌿 MPI Geografi · Karhutla 2026</b><span id="stc" class="sm"></span><button class="chip" onclick="document.getElementById('st').classList.remove('on')">✕ Tutup</button></div>
 <h1 id="sth"></h1><div class="stats" id="sts"></div><div id="stm"></div><div class="sm" id="stf"></div></div>
 <div class="str"><div id="sm"></div><div id="stcards"></div></div>
@@ -191,10 +209,15 @@ function list(){const r=D.map((a,i)=>[a,i]).filter(x=>vis(x[0]));
  side.innerHTML=`<h3 style="margin:0 0 6px">${S.F&&S.P?'Fauna & Flora':S.F?'Fauna':S.P?'Flora':'—'} (${r.length})</h3>`+(r.length?`<table>${r.map(([a,i])=>`<tr class="it" onclick="show(${i})"><td>${a[3]}</td><td><b>${a[1]}</b><br><span class="sm">${a[4]}</span></td><td><span class="badge" style="background:${ST[a[5]][1]}">${a[5]}</span></td></tr>`).join('')}</table>`:'<p class="sm">Belum ada contoh pada kategori ini.</p>')+'<div class="box">Ketuk pin di peta atau baris tabel. Ketuk garis putus-putus untuk info Garis Wallace/Weber.</div>'}
 const cache={};
 const slug=n=>n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const crd=(el,h)=>{const o=el.closest('.mc,.sc');o?o.insertAdjacentHTML('beforeend',h):el.insertAdjacentHTML('afterend',h)};
 async function photo(w,el,e,n){const f='img/'+slug(n)+'.jpg';
- if(await new Promise(r=>{const i=new Image();i.onload=()=>r(1);i.onerror=()=>r(0);i.src=f})&&el.isConnected){el.innerHTML=`<img src="${f}" alt="">`;el.insertAdjacentHTML('afterend','<div class="sm">Foto: koleksi sendiri</div>');return}
- try{if(!cache[w]){const r=await(await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+w)).json();cache[w]={s:r.thumbnail?.source||'',p:r.content_urls?.desktop?.page||''}}
- const c=cache[w];if(c.s&&el.isConnected){el.innerHTML=`<img src="${c.s}" alt="" onerror="this.parentNode.textContent='${e}'">`;el.insertAdjacentHTML('afterend',`<div class="sm">Foto: <a href="${c.p}" target="_blank" rel="noopener">Wikipedia/Wikimedia Commons ↗</a></div>`)}}catch(x){}}
+ if(await new Promise(r=>{const i=new Image();i.onload=()=>r(1);i.onerror=()=>r(0);i.src=f})&&el.isConnected){el.innerHTML=`<img src="${f}" alt="">`;crd(el,'<div class="cr">Foto: koleksi sendiri</div>');return}
+ try{if(!cache[w]){const r=await(await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+w)).json();const u=r.thumbnail?.source||'';let t='Foto: Wikipedia';
+  if(u.includes('/wikipedia/commons/')){t='Foto: Wikimedia Commons';const p=u.split('/'),fn=decodeURIComponent(u.includes('/thumb/')?p[p.length-2]:p[p.length-1]);
+   try{const m=await(await fetch('https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=extmetadata&format=json&origin=*&titles=File:'+encodeURIComponent(fn))).json();const x=Object.values(m.query.pages)[0].imageinfo[0].extmetadata;
+    const au=new DOMParser().parseFromString(x.Artist?.value||'','text/html').body.textContent.trim().slice(0,30);t='Foto: '+(au?au+', ':'')+(x.LicenseShortName?.value||'Wikimedia Commons')}catch(z){}}
+  cache[w]={s:u,t}}
+ const c=cache[w];if(c.s&&el.isConnected){el.innerHTML=`<img src="${c.s}" alt="" onerror="this.parentNode.textContent='${e}'">`;crd(el,`<div class="cr">${c.t}</div>`)}}catch(x){}}
 function show(i){const a=D[i],s=ST[a[5]],z=ZN[ZON[a[4]]];
  side.innerHTML=`<button class="chip" onclick="back()">← Daftar</button><div class="photo" id="ph" style="margin-top:8px">${a[3]}</div>
  <h2 style="margin:4px 0">${a[1]}</h2><p class="lat">${a[2]}</p>
@@ -214,35 +237,28 @@ const IS={"Sumatera":[51380,23702,"Gambut Sumatera masih membara","Sumsel termas
 const KAB=[["Merauke",-8.5,140.4,107763],["Sumba Timur",-9.9,120.2,59118],["Mappi",-6.9,139.4,34449],["Sumba Tengah",-9.6,119.5,31416],["Ketapang",-1.8,110.6,28304],["Bima",-8.5,118.7,12311],["Buru",-3.3,126.6,11793],["Banjar",-3.3,115,9031],["Sukamara",-2.6,111.2,7795],["Bombana",-4.6,121.9,7168]];
 /* ===== NASA FIRMS WMS (titik panas VIIRS) ===== */
 const KEY='7b47232b8fa967cb378e2f3c04ce0866'; /* MAP_KEY FIRMS gratis; terlihat publik bila repo publik */
-const firms=l=>L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/'+KEY+'/',{layers:l,format:'image/png',transparent:true,version:'1.1.1',colors:'255 140 0',size:4,symbols:'circle',attribution:'Titik panas: NASA FIRMS (VIIRS)', bounds: L.latLngBounds([-11, 95], [6, 141])});
+const firms=l=>L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/'+KEY+'/',{layers:l,format:'image/png',transparent:true,version:'1.1.1',colors:'255 140 0',size:4,symbols:'circle',attribution:'Titik panas: NASA FIRMS (VIIRS)'});
 let fw=firms('fires_viirs_7').addTo(map);
 const setFire=v=>{fw&&fw.remove();fw=v?firms('fires_viirs_'+v).addTo(map):null};
 const per=()=>document.getElementById('fp').value||7;
 /* ===== kartu detail dengan garis penghubung (mode pulau) ===== */
 let cp=0;
-function lines(){
- const n=document.getElementById('ln');
- n.innerHTML=`<svg style="width:100%;height:100%;pointer-events:none">` + 
- [...document.querySelectorAll('.mc')].map(c=>{
-  const a=D[c.dataset.i],p=map.latLngToContainerPoint([a[6],a[7]]),
-  x=c.offsetLeft+(c.classList.contains('l')?c.offsetWidth:0),
-  y=c.offsetTop+c.offsetHeight/2,k=ST[a[5]][1];
-  return `<path d="M${x},${y}L${p.x},${p.y}" fill="none" style="stroke:${k};stroke-width:2;stroke-dasharray:5 4"/><circle cx="${p.x}" cy="${p.y}" r="22" fill="none" style="stroke:${k};stroke-width:2"/>`
- }).join('') + `</svg>`;
-}
+function lines(){const n=document.getElementById('ln');n.innerHTML=[...document.querySelectorAll('.mc')].map(c=>{const a=D[c.dataset.i],p=map.latLngToContainerPoint([a[6],a[7]]),x=c.offsetLeft+(c.classList.contains('l')?c.offsetWidth:0),y=c.offsetTop+c.offsetHeight/2,k=ST[a[5]][1];return `<path d="M${x},${y}L${p.x},${p.y}" fill="none" style="stroke:${k};stroke-width:2;stroke-dasharray:5 4"/><circle cx="${p.x}" cy="${p.y}" r="22" fill="none" style="stroke:${k};stroke-width:2"/>`}).join('')}
 function cards(){const w=document.getElementById('cards');document.getElementById('mapwrap').classList.toggle('cm',!!S.p);
- // if(!S.p){w.innerHTML='';return lines()}
- const all=D.map((a,i)=>[a,i]).filter(x=>vis(x[0])).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]);
- const H=map.getSize().y,n=Math.max(2,Math.min(4,Math.floor((H-110)/175))),pp=2*n,pages=Math.max(1,Math.ceil(all.length/pp));
- cp=Math.max(0,Math.min(cp,pages-1));const ci=all.slice(cp*pp,cp*pp+pp).map(x=>x[1]);
- if(!ci.length){w.innerHTML='<div class="pg">Tidak ada data pada filter ini</div>';return lines()}
- map.fitBounds(L.latLngBounds(ci.map(i=>[D[i][6],D[i][7]])).pad(.2),{paddingTopLeft:[255,40],paddingBottomRight:[255,40],maxZoom:7,animate:false});
- const pts=ci.map(i=>[i,map.latLngToContainerPoint([D[i][6],D[i][7]])]).sort((a,b)=>a[1].x-b[1].x),h=Math.ceil(pts.length/2),sv=(H-108)/n;
- const col=(arr,sd)=>arr.sort((a,b)=>a[1].y-b[1].y).map(([i],k)=>{const a=D[i],t=ST[a[5]],ch=sv-8,ph=Math.max(48,Math.min(120,ch-125));
-  return `<div class="mc ${sd}" data-i="${i}" style="top:${52+k*sv}px;height:${ch}px" onclick="show(${i})"><div class="sm">■ ${a[4].toUpperCase()}</div><div class="photo" id="m${i}" style="height:${ph}px">${a[3]}</div><b>${a[1]}</b><div class="sm"><i>${a[2]}</i></div><span class="badge" style="background:${t[1]}">${t[0]} (${a[5]})</span><div class="ds">${a[10]}</div></div>`}).join('');
- w.innerHTML=col(pts.slice(0,h),'l')+col(pts.slice(h),'r')+`<div class="pg"><button class="chip" onclick="cp--;cards()">‹</button>${cp+1} / ${pages} · ${all.length} spesies<button class="chip" onclick="cp++;cards()">›</button></div>`;
- ci.forEach(i=>photo(D[i][8],document.getElementById('m'+i),D[i][3],D[i][1]));lines()}
-map.on('move moveend zoom zoomend resize', lines);
+ if(!S.p){w.innerHTML='';return lines()}
+ map.invalidateSize();const all=D.map((a,i)=>i).filter(i=>vis(D[i]));
+ if(!all.length){w.innerHTML='<div class="pg">Tidak ada data pada filter ini</div>';return lines()}
+ const H=map.getSize().y,N=all.length,h=Math.ceil(N/2),sv=(H-56)/h,big=sv>=243,cw=big?200:255;
+ map.fitBounds(L.latLngBounds(all.map(i=>[D[i][6],D[i][7]])).pad(.12),{paddingTopLeft:[cw+36,44],paddingBottomRight:[cw+36,16],maxZoom:7,animate:false});
+ const pts=all.map(i=>[i,map.latLngToContainerPoint([D[i][6],D[i][7]])]).sort((a,b)=>a[1].x-b[1].x);
+ const col=(arr,sd)=>arr.sort((a,b)=>a[1].y-b[1].y).map(([i],k)=>{const a=D[i],t=ST[a[5]],ch=sv-8,top=44+(h-arr.length)*sv/2+k*sv;
+  const bd=`<span class="badge" style="background:${t[1]}">${t[0]} (${a[5]})</span><div class="ds">${a[10]}</div>`,nm=`<div class="loc">■ ${a[4].toUpperCase()}</div><b>${a[1]}</b><div class="sm"><i>${a[2]}</i></div>`;
+  const st=`top:${top}px;height:${ch}px;width:${cw}px`;
+  return big?`<div class="mc ${sd}" data-i="${i}" style="${st}" onclick="show(${i})"><div class="photo" id="m${i}" style="height:${Math.max(60,Math.min(150,ch-150))}px">${a[3]}</div>${nm}${bd}</div>`
+  :`<div class="mc cp ${sd} ${ch<112?'xs':''}" data-i="${i}" style="${st}" onclick="show(${i})"><div class="photo" id="m${i}" style="height:${Math.max(48,Math.min(78,ch-34))}px">${a[3]}</div><div>${nm}${bd}</div></div>`}).join('');
+ w.innerHTML=col(pts.slice(0,h),'l')+col(pts.slice(h),'r');
+ all.forEach(i=>photo(D[i][8],document.getElementById('m'+i),D[i][3],D[i][1]));lines()}
+map.on('move zoom resize',lines);
 function tgl(v){const w=side.style.display!='none',o=v===undefined?!w:v;side.style.display=o?'':'none';document.getElementById('bl').classList.toggle('on',o);if(w!=o)setTimeout(()=>{map.invalidateSize();cards()},60)}
 let sm,sl,si=0;
 function openSt(i){si=(i%7+7)%7;const p=ISL[si],v=IS[p],it=D.filter(a=>a[4]==p);document.getElementById('st').classList.add('on');
@@ -250,8 +266,8 @@ function openSt(i){si=(i%7+7)%7;const p=ISL[si],v=IS[p],it=D.filter(a=>a[4]==p);
  sm.invalidateSize();sl&&sl.remove();sl=firms('fires_viirs_'+per()).addTo(sm);sm.fitBounds(L.latLngBounds(it.map(a=>[a[6],a[7]])).pad(.6),{animate:false});
  document.getElementById('stc').textContent=(si+1)+' / 7';
  document.getElementById('sth').innerHTML=`<span>${p}:</span> ${v[2]}`;
- document.getElementById('sts').innerHTML=`<div><div class="sm">LUAS TERBAKAR</div><div class="big">${fmt(v[0])} ha</div></div><div><div class="sm">DI LAHAN GAMBUT</div><div class="big am">${Math.round(v[1]/v[0]*100)}%</div><div class="sm">${fmt(v[1])} ha</div></div>`;
- document.getElementById('stm').innerHTML=`<div class="mr"><b>KONTRIBUSI NASIONAL</b><span>${Math.round(v[0]/6370.11)}% dari 637.011 ha (Jan–Agu 2026)</span></div><div class="mr"><b>LOKASI TERDAMPAK</b><span>${v[3]}</span></div><div class="mr"><b>TITIK PANAS</b><span>Titik oranye = VIIRS NASA FIRMS, ${per()==24?'24 jam':per()==48?'48 jam':'7 hari'} terakhir</span></div>`;
+ document.getElementById('sts').innerHTML=stats(p);
+ document.getElementById('stm').innerHTML=`<div class=\"lg\"><i></i>Titik panas satelit VIIRS (NASA FIRMS), ${pl()} terakhir</div>`+rows(p);
  document.getElementById('stf').textContent='Area terbakar: MapBiomas Fire Indonesia (Jan–Agu 2026). Titik panas: NASA FIRMS (VIIRS).';
  const r=D.map((a,i)=>[a,i]).filter(x=>x[0][4]==p).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]).slice(0,10);
  document.getElementById('stcards').innerHTML=r.map(([a,i])=>`<div class="sc"><div class="photo" id="s${i}">${a[3]}</div><b>${a[1]}</b><div class="sm"><i>${a[2]}</i></div><span class="badge" style="background:${ST[a[5]][1]}">${ST[a[5]][0]} (${a[5]})</span><div>${a[10]}</div></div>`).join('');
@@ -260,13 +276,23 @@ document.addEventListener('keydown',e=>{if(document.getElementById('st').classLi
 const ORD={CR:0,EN:1,VU:2,LC:3,NE:4};
 function pick(p){S.p=p;document.getElementById('sp').value=p;apply();if(!p)map.flyTo([-2.5,118],5)}
 function back(){S.p?story(S.p):list()}
-function story(p){tgl(true);const v=IS[p],r=D.map((a,i)=>[a,i]).filter(x=>vis(x[0])).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]);
- side.innerHTML=`<button class="chip" onclick="pick('')">← Semua pulau</button><h2 style="margin:8px 0 0">${p}</h2><div class="lat">${v[2]}</div>
- <div class="g2"><div><div class="sm">AREA TERBAKAR JAN–AGU 2026</div><div class="big" style="color:var(--EN)">${fmt(v[0])} ha</div></div><div><div class="sm">DI LAHAN GAMBUT</div><div class="big" style="color:#7a4a21">${v[1]?Math.round(v[1]/v[0]*100)+'%':'0%'}</div><div class="sm">${fmt(v[1])} ha</div></div></div>
- <div class="box f">${v[3]}</div><h3 style="margin:10px 0 0">${S.F&&S.P?'Fauna & Flora':S.F?'Fauna':S.P?'Flora':'—'} (${r.length})</h3>`+
- r.map(([a,i])=>`<div class="ic" onclick="show(${i})"><div class="photo" id="c${i}">${a[3]}</div><b>${a[1]}</b><div class="lat" style="margin:0">${a[2]}</div><span class="badge" style="background:${ST[a[5]][1]}">${ST[a[5]][0]} (${a[5]})</span><div class="sm" style="font-size:.88rem">${a[10]}</div></div>`).join('')+
- '<div class="sm">Sumber area terbakar: MapBiomas Fire Indonesia.</div>';
- r.forEach(([a,i])=>photo(a[8],document.getElementById('c'+i),a[3],a[1]))}
+const X={
+Sumatera:{pv:"Sumatera Selatan 15.488 ha",kk:"TN Way Kambas 1.756 ha",ks:"Sawit 7.332 · HTI 4.266 · Tambang 3.629 ha",pg:"5.309 ha",tr:"Naik pada Agustus 2026"},
+Jawa:{pv:"Jawa Timur 30.845 ha",kk:"TN Bromo Tengger Semeru 1.259 ha",ks:"Sawit 3.405 · Tambang 336 ha",pg:"3.008 ha",tr:"Naik pada Agustus 2026"},
+Kalimantan:{pv:"Kalbar 60.890 · Kalteng 29.192 · Kalsel 26.838 ha",kb:"Ketapang 28.304 · Banjar 9.031 · Sukamara 7.795 ha",kk:"CA Muara Kendawangan 8.269 · TN Tanjung Puting 604 · TN Sebangau 369 · TN Danau Sentarum 301 ha",ks:"Sawit 24.460 · Tambang 22.118 · HTI 11.006 ha",pg:"16.657 ha",tr:"Lonjakan terbesar pada Agustus 2026"},
+Sulawesi:{pv:"Sulawesi Tengah 17.148 ha",kb:"Bombana 7.168 ha",kk:"TN Rawa Aopa Watumohai 4.673 · CA Morowali 1.964 ha",ks:"Sawit 3.187 · Tambang 2.676 · HPH 1.539 ha",pg:"4.700 ha",tr:"Naik pada Agustus 2026"},
+"Nusa Tenggara":{pv:"NTT 119.835 · NTB 26.091 ha",kb:"Sumba Timur 59.118 · Sumba Tengah 31.416 · Bima 12.311 ha",kk:"TN Tambora 6.138 · TN Manupeu Tanah Daru 2.839 ha",ks:"Sawit 2.965 · HTI 443 ha",pg:"6.004 ha",tr:"Naik tajam Agustus; banyak savana terbakar"},
+Maluku:{pv:"Maluku 36.831 ha",kb:"Buru 11.793 ha",ks:"HPH 3.797 · Tambang 1.259 ha",pg:"13.471 ha",tr:"Naik pada Agustus 2026"},
+Papua:{pv:"Papua Selatan 144.210 ha",kb:"Merauke 107.763 · Mappi 34.449 ha",kk:"SM Pulau Dolok 13.731 · TN Wasur 8.708 · TN Lorentz 6.532 · SM Danau Bian 1.370 ha",ks:"HTI 8.464 · Sawit 3.066 ha",pg:"60.615 ha (Merauke 57.809 ha)",tr:"Lonjakan terbesar pada Agustus 2026"}};
+const RL=[['pv','PROVINSI TERATAS'],['kb','KABUPATEN TERATAS'],['kk','KAWASAN KONSERVASI'],['ks','KONSESI TERBAKAR'],['pg','PROYEK PANGAN'],['tr','TREN BULANAN']];
+const rows=p=>RL.filter(r=>X[p][r[0]]).map(r=>`<div class="mr"><b>${r[1]}</b><span>${X[p][r[0]]}</span></div>`).join('');
+const pl=()=>({24:'24 jam',48:'48 jam'}[document.getElementById('fp').value]||'7 hari');
+const stats=p=>{const v=IS[p];return `<div><div class="sm">LUAS TERBAKAR</div><div class="big">${fmt(v[0])} ha</div><div class="sm">${Math.round(v[0]/6370.11)}% dari 637.011 ha nasional</div></div><div><div class="sm">DI LAHAN GAMBUT</div><div class="big am">${Math.round(v[1]/v[0]*100)}%</div><div class="sm">${v[1]?fmt(v[1])+' ha':'seluruhnya tanah mineral'}</div></div>`};
+function story(p){tgl(true);const v=IS[p];
+ side.innerHTML=`<button class="chip" onclick="pick('')">← Semua pulau</button><div class="sd" style="margin-top:8px"><div class="sm">${ISL.indexOf(p)+1} / 7 · JAN–AGU 2026</div><h2><span>${p}:</span> ${v[2]}</h2>
+ <div class="lg"><i></i>Titik panas satelit VIIRS (NASA FIRMS), ${pl()} terakhir</div><div class="g2">${stats(p)}</div>${rows(p)}
+ <div class="sm" style="margin-top:10px">Berdasarkan MapBiomas Fire Indonesia (Factsheet Burned Area in Indonesia, Jan–Agu 2026) dan NASA FIRMS (VIIRS).</div></div>
+ <div class="sm" style="margin-top:8px">Ketuk kartu di peta untuk detail.</div>`}
 /* bar per pulau */
 document.getElementById('bars').innerHTML=Object.entries(IS).sort((a,b)=>b[1][0]-a[1][0]).map(([k,v])=>`<div class="bar"><span>${k}</span><div><i style="width:${(v[0]-v[1])/1731.97}%"></i><i class="g" style="width:${v[1]/1731.97}%"></i></div><b>${fmt(v[0])}</b></div>`).join('');
 /* toolbar filter */
@@ -274,12 +300,15 @@ const fl=document.getElementById('fl');
 fl.innerHTML=`<div class="seg"><button class="chip on" data-k="F">🐾 Fauna</button><button class="chip on" data-k="P">🌿 Flora</button></div>
 <select id="sp" class="sel"><option value="">Semua pulau</option>${ISL.map(x=>`<option>${x}</option>`).join('')}</select>
 <select id="ss" class="sel"><option value="">Semua status IUCN</option><option value="TT">Terancam punah (CR+EN+VU)</option><option value="CR">Kritis</option><option value="EN">Terancam</option><option value="VU">Rentan</option></select>
-<select id="fp" class="sel"><option value="7">🔥 Titik panas: 7 hari</option><option value="48">🔥 48 jam</option><option value="24">🔥 24 jam</option><option value="">🔥 Sembunyikan</option></select><button class="chip on" id="bl" onclick="tgl()">☰ Daftar</button><button class="chip" onclick="openSt(0)">📖 Mode cerita</button>`;
+<select id="fp" class="sel"><option value="7">🔥 Titik panas: 7 hari</option><option value="48">🔥 48 jam</option><option value="24">🔥 24 jam</option><option value="">🔥 Sembunyikan</option></select><button class="chip on" id="bl" onclick="tgl()">☰ Daftar</button><button class="chip" onclick="openSt(0)">📖 Mode cerita</button><button class="chip" onclick="hope(1)">🕊️ Setelah api padam</button>`;
 fl.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{S[b.dataset.k]=S[b.dataset.k]?0:1;b.classList.toggle('on',!!S[b.dataset.k]);apply()});
 document.getElementById('fp').onchange=e=>{setFire(e.target.value);if(sm&&document.getElementById('st').classList.contains('on'))openSt(si)};
 document.getElementById('sp').onchange=e=>pick(e.target.value);
 document.getElementById('ss').onchange=e=>{S.s=e.target.value;apply()};
 apply();
+const hope=v=>document.getElementById('hp').classList.toggle('on',!!v);
+document.addEventListener('keydown',e=>{if(e.key=='Escape')hope(0)});
+let rq;new ResizeObserver(()=>{cancelAnimationFrame(rq);rq=requestAnimationFrame(()=>{map.invalidateSize();if(S.p)cards()})}).observe(document.getElementById('mapwrap'));
 /* langkah mitigasi */
 const ST5=[
 ["Akui krisis & buka data",["Tetapkan karhutla sebagai <b>bencana nasional</b>","Berhenti menyangkal bahwa kondisi sudah membaik","Buat <b>dashboard harian</b> terbuka seperti saat COVID-19","Pasang sensor peringatan dini saat lahan gambut terbakar"],'<div class="box ex"><b>Apa itu bencana nasional?</b> Status tingkat bencana yang ditetapkan <b>Presiden</b> (provinsi oleh gubernur, kabupaten/kota oleh bupati/wali kota). Penentuannya mengacu UU No. 24/2007 dan PP No. 21/2008 dengan lima indikator: <b>jumlah korban, kerugian harta benda, kerusakan prasarana & sarana, cakupan luas wilayah terdampak, dan dampak sosial-ekonomi</b>. Bila ditetapkan, pemerintah pusat memimpin penanganan dan dapat memobilisasi sumber daya nasional.</div>'],
