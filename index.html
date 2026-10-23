@@ -68,4 +68,218 @@ a.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;
 #ln{position:absolute;inset:0;width:100%;height:100%;z-index:640;pointer-events:none}
 #cards{position:absolute;inset:0;z-index:650;pointer-events:none}
 .mc{position:absolute;width:215px;background:var(--card);color:var(--tx);border-radius:14px;padding:8px;box-shadow:0 4px 14px #0006;overflow:hidden;pointer-events:auto;cursor:pointer;font-size:.8rem;line-height:1.3}
-.mc.l{left:10px}.mc.r{right:10px}.mc b{font-size:.95rem}.mc .sm{font-size:.66rem}.mc .photo{margin-bottom:4px;border-radius:8
+.mc.l{left:10px}.mc.r{right:10px}.mc b{font-size:.95rem}.mc .sm{font-size:.66rem}.mc .photo{margin-bottom:4px;border-radius:8px}
+.ds{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pg{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:var(--card);border-radius:99px;padding:4px 10px;display:flex;gap:10px;align-items:center;pointer-events:auto;box-shadow:0 2px 8px #0006;font-size:.85rem}
+#mapwrap.cm .leg{display:none}
+@media(max-width:800px){#cards,#ln{display:none}}
+</style>
+</head>
+<body>
+<header><h1>🌿 Flora, Fauna & Karhutla Indonesia <span style="font-weight:400;font-size:.8rem">· Geografi XI</span></h1>
+<nav><button class="on" data-t="peta">Peta Flora–Fauna</button><button data-t="karhutla">Karhutla 2026</button><button data-t="mitigasi">Mitigasi</button></nav></header>
+<main>
+<section id="peta" class="on">
+ <div class="filters" id="fl"></div>
+ <div class="row"><div id="mapwrap"><div id="map"></div><svg id="ln"></svg><div id="cards"></div>
+  <div class="leg"><b>IUCN:</b><i style="background:var(--CR)"></i>Kritis<i style="background:var(--EN)"></i>Terancam<i style="background:var(--VU)"></i>Rentan<i style="background:var(--LC)"></i>Risiko rendah<i style="background:var(--NE)"></i>Belum dievaluasi<br><i style="background:#ff8c00"></i>Titik panas VIIRS (NASA FIRMS, sesuai periode terpilih)</div></div>
+  <aside id="side"></aside></div>
+</section>
+
+<section id="karhutla" class="page">
+ <div class="card"><h2 style="margin-top:0">Area terbakar Indonesia, Januari–Agustus 2026</h2><div class="grid">
+  <div><div class="big">637.011 ha</div><div class="sm">Total area terbakar, setara ±5× luas Singapura</div></div>
+  <div><div class="big">+113%</div><div class="sm">Lonjakan Agustus dibanding Juli</div></div>
+  <div><div class="big">126.431 ha</div><div class="sm">Terbakar di lahan gambut (20%); 65% di antaranya di Kalimantan & Sumatera</div></div>
+  <div><div class="big">20.363 ha</div><div class="sm">Habitat harimau, badak, gajah Sumatera & orang utan yang terbakar</div></div></div></div>
+ <div class="card"><b>Area terbakar per pulau (ha)</b><div id="bars"></div><div class="sm">Oranye = tanah mineral · cokelat = gambut. Peta sebaran ada di tab Peta Flora–Fauna (tombol 🔥).</div></div>
+ <div class="card"><b>Analisis data</b><ul>
+  <li><b>Terkonsentrasi:</b> 70% area terbakar ada di Papua (27%), Bali–Nusa Tenggara (23%), dan Kalimantan (20%). Merauke saja 107.763 ha.</li>
+  <li><b>Dua pola berbeda:</b> di Sumatera & Kalimantan hampir separuh area terbakar adalah <b>gambut</b> (api membara di bawah tanah, asap pekat). Di Nusa Tenggara & Papua Selatan sebagian besar <b>savana/tumbuhan non-hutan di tanah mineral</b> (65% area terbakar nasional berada di tumbuhan non-hutan).</li>
+  <li><b>Di dalam kawasan hutan:</b> 331.246 ha (52%). 216 kawasan konservasi terbakar; terbesar TN Wasur 8.708 ha, TN Lorentz 6.532 ha, TN Tambora 6.138 ha.</li>
+  <li><b>Penggunaan lahan:</b> 110.051 ha di konsesi ekstraktif, 109.763 ha di lahan proyek pangan (53% di Merauke), 39.217 ha di bekas deforestasi (85% di Kalimantan & Sumatera).</li>
+  <li><b>Dampak satwa:</b> habitat harimau 7.454 ha, orang utan 5.657 ha, badak 4.028 ha, gajah Sumatera 3.224 ha ikut terbakar.</li>
+  <li><b>Catatan konsep:</b> <i>area terbakar</i> (hektare, dihitung dari citra satelit bulanan) berbeda dengan <i>titik panas</i> (anomali suhu sesaat). Data ini area terbakar.</li></ul></div>
+ <div class="card"><b>Sumber & data lengkap:</b><br>
+  <a class="btn" target="_blank" rel="noopener" href="https://fire.mapbiomas.id/id">MapBiomas Fire Indonesia</a>
+  <a class="btn" target="_blank" rel="noopener" href="https://kobong.mapbiomas.id">Platform peta bulanan</a>
+  <a class="btn" target="_blank" rel="noopener" href="https://fire.mapbiomas.id/storage/files/factsheet/CCkUalu5dO0VLJllHkUQib5Xwa1gwRrYXu1uhhwg.pdf">Factsheet (PDF)</a></div>
+ <div class="card"><b>Diskusi:</b> Mengapa pola kebakaran Papua/NTT berbeda dari Sumatera/Kalimantan? Mitigasi apa yang cocok untuk masing-masing pola?</div>
+</section>
+
+<section id="mitigasi" class="page">
+ <div class="card"><h2 style="margin:0">Langkah Mitigasi Karhutla</h2><div class="sm">Rekomendasi Kabinet Bayangan (kabinetbayangan.id) · ketuk langkah untuk membuka</div></div>
+ <div id="steps" style="display:grid;gap:12px"></div>
+</section>
+</main>
+
+<div id="st"><div class="stl"><div class="stt"><b>🌿 MPI Geografi · Karhutla 2026</b><span id="stc" class="sm"></span><button class="chip" onclick="document.getElementById('st').classList.remove('on')">✕ Tutup</button></div>
+<h1 id="sth"></h1><div class="stats" id="sts"></div><div id="stm"></div><div class="sm" id="stf"></div></div>
+<div class="str"><div id="sm"></div><div id="stcards"></div></div>
+<button class="nv l" onclick="openSt(si-1)">‹</button><button class="nv r" onclick="openSt(si+1)">›</button></div>
+<script>
+const ISL=["Sumatera","Jawa","Kalimantan","Sulawesi","Nusa Tenggara","Maluku","Papua"];
+const ZON={Sumatera:"A",Jawa:"A",Kalimantan:"A",Sulawesi:"P","Nusa Tenggara":"P",Maluku:"P",Papua:"U"};
+const ZN={A:["Asiatis (Barat)","#2e86de"],P:["Peralihan (Tengah)","#8e44ad"],U:["Australis (Timur)","#e67e22"]};
+const ST={CR:["Kritis","var(--CR)"],EN:["Terancam","var(--EN)"],VU:["Rentan","var(--VU)"],LC:["Risiko rendah","var(--LC)"],NE:["Belum dievaluasi IUCN","var(--NE)"]};
+/* [jenis,nama,ilmiah,emoji,pulau,status,lat,lng,judul Wikipedia,ciri,kaitan karhutla] */
+const D=[
+["f","Gajah Sumatera","Elephas maximus sumatranus","🐘","Sumatera","CR",-4.5,104.5,"Sumatran_elephant","Mamalia besar, hutan Sumatera.","Hutan Riau, Jambi & Sumsel rawan terbakar; habitat menyempit."],
+["f","Harimau Sumatera","Panthera tigris sumatrae","🐅","Sumatera","CR",-1.6,101.5,"Sumatran_tiger","Pemangsa besar, tidak ada di Indonesia Timur.","Kebakaran mengusir mangsa dan memicu konflik dengan manusia."],
+["f","Beruang Madu","Helarctos malayanus","🐻","Sumatera","VU",3.2,98.0,"Sun_bear","Beruang terkecil di dunia.","Pohon sarang dan sumber madu/buah hilang akibat api."],
+["f","Orang Utan Kalimantan","Pongo pygmaeus","🦧","Kalimantan","CR",-1.9,111.9,"Bornean_orangutan","Primata besar khas Asiatis.","Kalimantan pusat karhutla 2026; sulit lari dari api & asap gambut."],
+["f","Trenggiling","Manis javanica","🦔","Kalimantan","CR",0.3,115.5,"Sunda_pangolin","Mamalia bersisik, pemakan semut/rayap.","Bergerak lambat dan menggulung tubuh saat terancam, sehingga mudah terbakar."],
+["f","Owa Janggut Putih","Hylobates albibarbis","🐒","Kalimantan","EN",-1.5,113.3,"Bornean_white-bearded_gibbon","Primata penghuni kanopi hutan Kalimantan.","Kanopi terbakar menghilangkan jalur bergerak dan pakan."],
+["f","Bekantan","Nasalis larvatus","🐵","Kalimantan","EN",-2.8,114.8,"Proboscis_monkey","Endemik Kalimantan, hidung panjang, hutan rawa/mangrove.","Hutan rawa dan gambut tepi sungai ikut terbakar."],
+["f","Badak Jawa (Bercula Satu)","Rhinoceros sondaicus","🦏","Jawa","CR",-6.75,105.35,"Javan_rhinoceros","Hanya ada di Ujung Kulon.","Populasi sangat kecil; satu bencana dapat berdampak besar."],
+["f","Banteng Jawa","Bos javanicus","🐂","Jawa","EN",-7.85,114.4,"Banteng","Mamalia besar savana & hutan Jawa.","Kebakaran savana musim kemarau mengurangi pakan."],
+["f","Macan Tutul Jawa","Panthera pardus melas","🐆","Jawa","CR",-7.3,107.0,"Javan_leopard","Pemangsa puncak Jawa.","Hutan tersisa kecil; api mempercepat hilangnya habitat."],
+["f","Komodo","Varanus komodoensis","🦎","Nusa Tenggara","EN",-8.55,119.5,"Komodo_dragon","Endemik NTT; reptil purba besar.","Kebakaran savana dan perubahan iklim mengancam mangsa."],
+["f","Julang Sumba","Rhyticeros everetti","🦜","Nusa Tenggara","VU",-9.7,120.0,"Sumba_hornbill","Endemik Sumba; burung rangkong.","Butuh pohon besar berlubang untuk bersarang."],
+["f","Kakatua Jambul Jingga","Cacatua sulphurea","🦜","Nusa Tenggara","CR",-8.6,118.3,"Yellow-crested_cockatoo","Burung berjambul jingga, endemik Wallacea.","Kehilangan hutan & perburuan; kebakaran memperparah."],
+["f","Rusa Timor","Cervus timorensis","🦌","Nusa Tenggara","VU",-9.8,124.2,"Javan_rusa","Rusa savana Nusa Tenggara.","Padang rumput kering sering terbakar."],
+["f","Elang Flores","Nisaetus floris","🦅","Nusa Tenggara","CR",-8.7,121.5,"Flores_hawk-eagle","Burung pemangsa endemik Flores–Sumbawa.","Hutan dataran rendah sempit; kebakaran mengurangi sarang."],
+["f","Anoa (Sapi Kerdil)","Bubalus depressicornis","🐃","Sulawesi","EN",-3.2,121.9,"Lowland_anoa","Endemik Sulawesi; mamalia kerdil.","Hutan dataran rendah menyusut."],
+["f","Babi Rusa","Babyrousa spp.","🐗","Sulawesi","VU",-0.8,121.0,"Babirusa","Endemik Sulawesi; taring melengkung.","Rawan saat kemarau & pembukaan lahan."],
+["f","Burung Maleo","Macrocephalon maleo","🐦","Sulawesi","EN",-1.3,120.1,"Maleo","Endemik; bertelur di tanah hangat.","Lokasi bertelur terbuka rentan rusak oleh api."],
+["f","Tarsius","Tarsius tarsier","🐒","Sulawesi","VU",0.8,123.9,"Spectral_tarsier","Primata mungil bermata besar.","Api menghilangkan pohon kecil tempat tinggalnya."],
+["f","Yaki (Monyet Hitam Sulawesi)","Macaca nigra","🐵","Sulawesi","CR",1.5,125.2,"Celebes_crested_macaque","Endemik Sulawesi Utara.","Habitat hutan terbatas, sensitif kebakaran."],
+["f","Kuskus Beruang","Ailurops ursinus","🐨","Sulawesi","VU",-2.0,122.3,"Bear_cuscus","Marsupial endemik Sulawesi.","Hewan pohon lambat, sulit menghindari api."],
+["f","Kakatua Seram","Cacatua moluccensis","🦜","Maluku","VU",-3.0,129.5,"Salmon-crested_cockatoo","Endemik Maluku (Seram), jambul merah muda.","Penebangan & kebakaran hutan mengurangi pohon sarang."],
+["f","Bidadari Halmahera","Semioptera wallacii","🦜","Maluku","LC",0.8,127.7,"Wallace's_standardwing","Burung cenderawasih endemik Halmahera.","Habitat hutan terdampak pembukaan lahan."],
+["f","Kakatua Putih","Cacatua alba","🦜","Maluku","EN",1.1,127.3,"White_cockatoo","Endemik Maluku Utara; bulu putih.","Hilangnya hutan dan perdagangan satwa."],
+["f","Burung Cenderawasih","Paradisaea spp.","🦜","Papua","LC",-1.5,138.0,"Bird-of-paradise","Bulu indah mencolok, suara kurang merdu.","Mulai terdampak pembukaan lahan; status beda tiap spesies."],
+["f","Burung Kasuari","Casuarius casuarius","🦤","Papua","LC",-4.0,136.5,"Southern_cassowary","Burung besar tak bisa terbang.","Jelajah luas; api mengganggu sumber buah."],
+["f","Kakaktua Raja","Probosciger aterrimus","🦜","Papua","LC",-5.0,138.6,"Palm_cockatoo","Burung hitam berpipi merah.","Bergantung pohon besar untuk bersarang."],
+["f","Kanguru Pohon","Dendrolagus spp.","🦘","Papua","VU",-3.9,141.0,"Tree-kangaroo","Marsupial pemanjat; status beda tiap spesies.","Kehilangan pohon akibat api & penebangan."],
+["f","Walabi (Kanguru Kecil)","Wallabia / Macropus spp.","🦘","Papua","LC",-8.3,140.5,"Wallaby","Marsupial kecil, savana Merauke.","Savana Papua Selatan rawan terbakar."],
+["f","Kuskus Bintik","Spilocuscus maculatus","🐨","Papua","LC",-1.8,134.2,"Common_spotted_cuscus","Marsupial pemanjat.","Kanopi terbakar mengancam hewan pohon."],
+["f","Landak Irian (Echidna)","Zaglossus bruijni","🦔","Papua","CR",-3.2,139.8,"Western_long-beaked_echidna","Mamalia bertelur khas Australis.","Populasi sangat kecil; habitat hutan pegunungan."],
+["p","Rafflesia arnoldii","Rafflesia arnoldii","🌺","Sumatera","NE",-3.8,102.3,"Rafflesia_arnoldii","Bunga terbesar dunia; puspa langka Bengkulu.","Parasit liana hutan; hutan terbakar menghilangkan inangnya."],
+["p","Pinang Merah","Cyrtostachys renda","🌴","Sumatera","NE",-1.6,103.6,"Cyrtostachys_renda","Palem berpelepah merah; tumbuh di rawa gambut.","Hidup di lahan gambut yang kerap terbakar."],
+["p","Edelweiss Jawa","Anaphalis javanica","🌼","Jawa","LC",-7.9,112.9,"Anaphalis_javanica","Bunga abadi pegunungan.","Kebakaran padang gunung merusak populasinya."],
+["p","Kantil","Michelia alba","🌸","Jawa","NE",-7.5,110.0,"Magnolia_%C3%97_alba","Bunga putih harum; flora identitas Jawa Tengah.","Tanaman budidaya; hutan asalnya menyusut."],
+["p","Anggrek Hitam","Coelogyne pandurata","🌺","Kalimantan","NE",0.0,116.5,"Coelogyne_pandurata","Anggrek berlidah hitam, flora Kaltim.","Hutan hujan basah yang mengering rentan terbakar."],
+["p","Ulin (Kayu Besi)","Eusideroxylon zwageri","🌳","Kalimantan","VU",-2.5,112.5,"Eusideroxylon_zwageri","Kayu sangat keras dan tahan air.","Tumbuh lambat; sulit pulih setelah kebakaran."],
+["p","Eboni","Diospyros celebica","🌳","Sulawesi","VU",-1.0,121.5,"Diospyros_celebica","Kayu hitam bernilai tinggi, flora Sulteng.","Eksploitasi dan kebakaran menekan populasi."],
+["p","Lontar","Borassus flabellifer","🌴","Sulawesi","LC",-5.2,119.8,"Borassus_flabellifer","Palem penghasil nira, flora Sulsel.","Savana kering mudah terbakar."],
+["p","Cendana","Santalum album","🌳","Nusa Tenggara","VU",-9.6,123.6,"Santalum_album","Kayu harum, flora NTT.","Overeksploitasi dan kebakaran savana."],
+["p","Kesambi","Schleichera oleosa","🌳","Nusa Tenggara","LC",-8.4,116.4,"Schleichera_oleosa","Pohon savana kering NTB/NTT.","Tahan kering namun savana sering terbakar."],
+["p","Cengkeh","Syzygium aromaticum","🌿","Maluku","NE",0.8,127.4,"Clove","Rempah asli Maluku; flora Maluku Utara.","Kebun terancam bila lahan sekitarnya terbakar."],
+["p","Anggrek Larat","Dendrobium phalaenopsis","🌺","Maluku","NE",-7.0,132.0,"Dendrobium_phalaenopsis","Anggrek khas Kepulauan Tanimbar.","Hutan hujan epifit sensitif kekeringan."],
+["p","Matoa","Pometia pinnata","🌳","Papua","NE",-2.6,140.7,"Pometia_pinnata","Buah khas Papua, pohon hutan.","Hutan Papua mulai terdampak pembukaan lahan."],
+["p","Buah Merah","Pandanus conoideus","🌿","Papua","NE",-4.1,138.9,"Pandanus_conoideus","Pandan penghasil buah merah.","Habitat basah pegunungan; sensitif kering."]
+];
+const S={F:1,P:1,z:'',p:'',s:''};
+const map=L.map('map',{zoomSnap:.5}).setView([-2.5,118],5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:9,attribution:'© OpenStreetMap'}).addTo(map);
+let fire1=null;
+/* Garis Wallace & Weber (klik untuk info) */
+const LINES={
+ wallace:{c:'#2e86de',pts:[[-9,115.7],[-6,117.5],[-2,117.3],[2,119.5],[7,122.5]],
+  h:'Garis Wallace',t:'<p>Garis imajiner yang diusulkan naturalis <b>Alfred Russel Wallace</b> (1859). Melewati Selat Lombok (Bali–Lombok) dan Selat Makassar (Kalimantan–Sulawesi).</p><div class="box"><b>Memisahkan:</b> fauna Asiatis (barat) dan fauna Peralihan/Wallacea (tengah).</div><div class="box"><b>Mengapa?</b> Selat dalam tidak pernah menjadi daratan saat zaman es, sehingga hewan darat Asia tidak bisa menyeberang. Contoh: harimau, gajah, orang utan hanya di barat garis.</div><p class="sm">Posisi di peta perkiraan.</p>'},
+ weber:{c:'#e67e22',pts:[[-9,127],[-5,129],[-1,130.5],[2,128.5]],
+  h:'Garis Weber',t:'<p>Garis yang diusulkan <b>Max Weber</b>, melewati perairan di antara Maluku/Sulawesi dan Papua/Kepulauan Aru.</p><div class="box"><b>Memisahkan:</b> fauna Peralihan (Wallacea) dan fauna Australis (timur).</div><div class="box"><b>Ciri di timur garis:</b> mamalia berkantung (kanguru pohon, kuskus), burung berwarna mencolok (cenderawasih), tidak ada kera.</div><p class="sm">Posisi di peta perkiraan. Wilayah di antara Wallace dan Weber disebut Wallacea.</p>'}};
+Object.values(LINES).forEach(l=>{L.polyline(l.pts,{color:l.c,dashArray:'8 6',weight:4}).addTo(map).bindTooltip(l.h).on('click',()=>{side.innerHTML=`<button class="chip" onclick="back()">← Daftar</button><h2>📏 ${l.h}</h2>${l.t}`});L.polyline(l.pts,{color:l.c,weight:22,opacity:0}).addTo(map).on('click',()=>{side.innerHTML=`<button class="chip" onclick="back()">← Daftar</button><h2>📏 ${l.h}</h2>${l.t}`})});
+const side=document.getElementById('side');
+const mk=D.map((a,i)=>{const m=L.marker([a[6],a[7]],{icon:L.divIcon({className:'',html:`<div class="pin ${a[0]=='p'?'fl':''}" style="background:${ST[a[5]][1]}">${a[3]}</div>`,iconSize:[36,36],iconAnchor:[18,18]})});m.on('click',()=>show(i));return m});
+const vis=a=>(a[0]=='f'?S.F:S.P)&&(!S.p||a[4]==S.p)&&(!S.s||(S.s=='TT'?'CR,EN,VU'.includes(a[5]):a[5]==S.s));
+function apply(){mk.forEach((m,i)=>vis(D[i])?m.addTo(map):m.remove());cp=0;back();cards()}
+function list(){const r=D.map((a,i)=>[a,i]).filter(x=>vis(x[0]));
+ side.innerHTML=`<h3 style="margin:0 0 6px">${S.F&&S.P?'Fauna & Flora':S.F?'Fauna':S.P?'Flora':'—'} (${r.length})</h3>`+(r.length?`<table>${r.map(([a,i])=>`<tr class="it" onclick="show(${i})"><td>${a[3]}</td><td><b>${a[1]}</b><br><span class="sm">${a[4]}</span></td><td><span class="badge" style="background:${ST[a[5]][1]}">${a[5]}</span></td></tr>`).join('')}</table>`:'<p class="sm">Belum ada contoh pada kategori ini.</p>')+'<div class="box">Ketuk pin di peta atau baris tabel. Ketuk garis putus-putus untuk info Garis Wallace/Weber.</div>'}
+const cache={};
+const slug=n=>n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+async function photo(w,el,e,n){const f='img/'+slug(n)+'.jpg';
+ if(await new Promise(r=>{const i=new Image();i.onload=()=>r(1);i.onerror=()=>r(0);i.src=f})&&el.isConnected){el.innerHTML=`<img src="${f}" alt="">`;el.insertAdjacentHTML('afterend','<div class="sm">Foto: koleksi sendiri</div>');return}
+ try{if(!cache[w]){const r=await(await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+w)).json();cache[w]={s:r.thumbnail?.source||'',p:r.content_urls?.desktop?.page||''}}
+ const c=cache[w];if(c.s&&el.isConnected){el.innerHTML=`<img src="${c.s}" alt="" onerror="this.parentNode.textContent='${e}'">`;el.insertAdjacentHTML('afterend',`<div class="sm">Foto: <a href="${c.p}" target="_blank" rel="noopener">Wikipedia/Wikimedia Commons ↗</a></div>`)}}catch(x){}}
+function show(i){const a=D[i],s=ST[a[5]],z=ZN[ZON[a[4]]];
+ side.innerHTML=`<button class="chip" onclick="back()">← Daftar</button><div class="photo" id="ph" style="margin-top:8px">${a[3]}</div>
+ <h2 style="margin:4px 0">${a[1]}</h2><p class="lat">${a[2]}</p>
+ <span class="badge" style="background:${z[1]}">${z[0]}</span><span class="badge" style="background:#556">${a[4]}</span><span class="badge" style="background:${s[1]}">IUCN: ${a[5]} – ${s[0]}</span>
+ <div class="box"><b>Ciri:</b> ${a[9]}</div><div class="box f"><b>🔥 Kaitan karhutla:</b> ${a[10]}</div>
+ <div class="sm">Foto otomatis dari Wikipedia/Commons. Foto sendiri: simpan sebagai <code>img/${slug(a[1])}.jpg</code>. CR=Kritis, EN=Terancam, VU=Rentan (terancam punah).</div>`;
+ photo(a[8],document.getElementById('ph'),a[3],a[1]);tgl(true);if(!S.p)map.flyTo([a[6],a[7]],Math.max(map.getZoom(),6))}
+/* ===== area terbakar MapBiomas Fire (factsheet Jan–Agu 2026) ===== */
+const fmt=n=>n.toLocaleString('id-ID');
+const IS={"Sumatera":[51380,23702,"Gambut Sumatera masih membara","Sumsel termasuk 10 provinsi teratas (15.488 ha). TN Way Kambas terbakar 1.756 ha.",-1,102],
+"Jawa":[48881,0,"Terbakar seluruhnya di tanah mineral","Jawa Timur 30.845 ha (peringkat 5 nasional). TN Bromo Tengger Semeru 1.259 ha.",-7.4,110.5],
+"Kalimantan":[127262,57853,"Pusat kebakaran gambut","Kalbar 60.890 ha, Kalteng 29.192 ha, Kalsel 26.838 ha. Ketapang 28.304 ha. TN Tanjung Puting 604 ha, Sebangau 369 ha, Danau Sentarum 301 ha.",-1,114],
+"Sulawesi":[49959,214,"Hampir seluruhnya di tanah mineral","Sulteng 17.148 ha, Bombana 7.168 ha. TN Rawa Aopa Watumohai 4.673 ha.",-2,121],
+"Nusa Tenggara":[146488,0,"Savana yang terbakar","NTT 119.835 ha, NTB 26.091 ha. Sumba Timur 59.118 ha, Sumba Tengah 31.416 ha. TN Tambora 6.138 ha, TN Manupeu Tanah Daru 2.839 ha.",-9,119.5],
+"Maluku":[39844,0,"Seluruhnya di tanah mineral","Maluku 36.831 ha (peringkat 4 nasional); Buru 11.793 ha.",-3.2,129.5],
+"Papua":[173197,44663,"Terluas di Indonesia","Papua Selatan 144.210 ha. Merauke 107.763 ha, Mappi 34.449 ha. TN Wasur 8.708 ha, TN Lorentz 6.532 ha. 60.615 ha berada di lahan proyek pangan.",-4.5,138.5]};
+const KAB=[["Merauke",-8.5,140.4,107763],["Sumba Timur",-9.9,120.2,59118],["Mappi",-6.9,139.4,34449],["Sumba Tengah",-9.6,119.5,31416],["Ketapang",-1.8,110.6,28304],["Bima",-8.5,118.7,12311],["Buru",-3.3,126.6,11793],["Banjar",-3.3,115,9031],["Sukamara",-2.6,111.2,7795],["Bombana",-4.6,121.9,7168]];
+/* ===== NASA FIRMS WMS (titik panas VIIRS) ===== */
+const KEY='7b47232b8fa967cb378e2f3c04ce0866'; /* MAP_KEY FIRMS gratis; terlihat publik bila repo publik */
+const firms=l=>L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/'+KEY+'/',{layers:l,format:'image/png',transparent:true,version:'1.1.1',colors:'255 140 0',size:4,symbols:'circle',attribution:'Titik panas: NASA FIRMS (VIIRS)'});
+let fw=firms('fires_viirs_7').addTo(map);
+const setFire=v=>{fw&&fw.remove();fw=v?firms('fires_viirs_'+v).addTo(map):null};
+const per=()=>document.getElementById('fp').value||7;
+/* ===== kartu detail dengan garis penghubung (mode pulau) ===== */
+let cp=0;
+function lines(){const n=document.getElementById('ln');n.innerHTML=[...document.querySelectorAll('.mc')].map(c=>{const a=D[c.dataset.i],p=map.latLngToContainerPoint([a[6],a[7]]),x=c.offsetLeft+(c.classList.contains('l')?c.offsetWidth:0),y=c.offsetTop+c.offsetHeight/2,k=ST[a[5]][1];return `<path d="M${x},${y}L${p.x},${p.y}" fill="none" style="stroke:${k};stroke-width:2;stroke-dasharray:5 4"/><circle cx="${p.x}" cy="${p.y}" r="22" fill="none" style="stroke:${k};stroke-width:2"/>`}).join('')}
+function cards(){const w=document.getElementById('cards');document.getElementById('mapwrap').classList.toggle('cm',!!S.p);
+ if(!S.p){w.innerHTML='';return lines()}
+ const all=D.map((a,i)=>[a,i]).filter(x=>vis(x[0])).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]);
+ const H=map.getSize().y,n=Math.max(2,Math.min(4,Math.floor((H-110)/175))),pp=2*n,pages=Math.max(1,Math.ceil(all.length/pp));
+ cp=Math.max(0,Math.min(cp,pages-1));const ci=all.slice(cp*pp,cp*pp+pp).map(x=>x[1]);
+ if(!ci.length){w.innerHTML='<div class="pg">Tidak ada data pada filter ini</div>';return lines()}
+ map.fitBounds(L.latLngBounds(ci.map(i=>[D[i][6],D[i][7]])).pad(.2),{paddingTopLeft:[255,40],paddingBottomRight:[255,40],maxZoom:7,animate:false});
+ const pts=ci.map(i=>[i,map.latLngToContainerPoint([D[i][6],D[i][7]])]).sort((a,b)=>a[1].x-b[1].x),h=Math.ceil(pts.length/2),sv=(H-108)/n;
+ const col=(arr,sd)=>arr.sort((a,b)=>a[1].y-b[1].y).map(([i],k)=>{const a=D[i],t=ST[a[5]],ch=sv-8,ph=Math.max(48,Math.min(120,ch-125));
+  return `<div class="mc ${sd}" data-i="${i}" style="top:${52+k*sv}px;height:${ch}px" onclick="show(${i})"><div class="sm">■ ${a[4].toUpperCase()}</div><div class="photo" id="m${i}" style="height:${ph}px">${a[3]}</div><b>${a[1]}</b><div class="sm"><i>${a[2]}</i></div><span class="badge" style="background:${t[1]}">${t[0]} (${a[5]})</span><div class="ds">${a[10]}</div></div>`}).join('');
+ w.innerHTML=col(pts.slice(0,h),'l')+col(pts.slice(h),'r')+`<div class="pg"><button class="chip" onclick="cp--;cards()">‹</button>${cp+1} / ${pages} · ${all.length} spesies<button class="chip" onclick="cp++;cards()">›</button></div>`;
+ ci.forEach(i=>photo(D[i][8],document.getElementById('m'+i),D[i][3],D[i][1]));lines()}
+map.on('move zoom resize',lines);
+function tgl(v){const w=side.style.display!='none',o=v===undefined?!w:v;side.style.display=o?'':'none';document.getElementById('bl').classList.toggle('on',o);if(w!=o)setTimeout(()=>{map.invalidateSize();cards()},60)}
+let sm,sl,si=0;
+function openSt(i){si=(i%7+7)%7;const p=ISL[si],v=IS[p],it=D.filter(a=>a[4]==p);document.getElementById('st').classList.add('on');
+ if(!sm){sm=L.map('sm',{zoomControl:false,attributionControl:false});L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:9}).addTo(sm)}
+ sm.invalidateSize();sl&&sl.remove();sl=firms('fires_viirs_'+per()).addTo(sm);sm.fitBounds(L.latLngBounds(it.map(a=>[a[6],a[7]])).pad(.6),{animate:false});
+ document.getElementById('stc').textContent=(si+1)+' / 7';
+ document.getElementById('sth').innerHTML=`<span>${p}:</span> ${v[2]}`;
+ document.getElementById('sts').innerHTML=`<div><div class="sm">LUAS TERBAKAR</div><div class="big">${fmt(v[0])} ha</div></div><div><div class="sm">DI LAHAN GAMBUT</div><div class="big am">${Math.round(v[1]/v[0]*100)}%</div><div class="sm">${fmt(v[1])} ha</div></div>`;
+ document.getElementById('stm').innerHTML=`<div class="mr"><b>KONTRIBUSI NASIONAL</b><span>${Math.round(v[0]/6370.11)}% dari 637.011 ha (Jan–Agu 2026)</span></div><div class="mr"><b>LOKASI TERDAMPAK</b><span>${v[3]}</span></div><div class="mr"><b>TITIK PANAS</b><span>Titik oranye = VIIRS NASA FIRMS, ${per()==24?'24 jam':per()==48?'48 jam':'7 hari'} terakhir</span></div>`;
+ document.getElementById('stf').textContent='Area terbakar: MapBiomas Fire Indonesia (Jan–Agu 2026). Titik panas: NASA FIRMS (VIIRS).';
+ const r=D.map((a,i)=>[a,i]).filter(x=>x[0][4]==p).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]).slice(0,10);
+ document.getElementById('stcards').innerHTML=r.map(([a,i])=>`<div class="sc"><div class="photo" id="s${i}">${a[3]}</div><b>${a[1]}</b><div class="sm"><i>${a[2]}</i></div><span class="badge" style="background:${ST[a[5]][1]}">${ST[a[5]][0]} (${a[5]})</span><div>${a[10]}</div></div>`).join('');
+ r.forEach(([a,i])=>photo(a[8],document.getElementById('s'+i),a[3],a[1]))}
+document.addEventListener('keydown',e=>{if(document.getElementById('st').classList.contains('on')){if(e.key=='ArrowRight')openSt(si+1);if(e.key=='ArrowLeft')openSt(si-1);if(e.key=='Escape')document.getElementById('st').classList.remove('on')}});
+const ORD={CR:0,EN:1,VU:2,LC:3,NE:4};
+function pick(p){S.p=p;document.getElementById('sp').value=p;apply();if(!p)map.flyTo([-2.5,118],5)}
+function back(){S.p?story(S.p):list()}
+function story(p){tgl(true);const v=IS[p],r=D.map((a,i)=>[a,i]).filter(x=>vis(x[0])).sort((x,y)=>ORD[x[0][5]]-ORD[y[0][5]]);
+ side.innerHTML=`<button class="chip" onclick="pick('')">← Semua pulau</button><h2 style="margin:8px 0 0">${p}</h2><div class="lat">${v[2]}</div>
+ <div class="g2"><div><div class="sm">AREA TERBAKAR JAN–AGU 2026</div><div class="big" style="color:var(--EN)">${fmt(v[0])} ha</div></div><div><div class="sm">DI LAHAN GAMBUT</div><div class="big" style="color:#7a4a21">${v[1]?Math.round(v[1]/v[0]*100)+'%':'0%'}</div><div class="sm">${fmt(v[1])} ha</div></div></div>
+ <div class="box f">${v[3]}</div><h3 style="margin:10px 0 0">${S.F&&S.P?'Fauna & Flora':S.F?'Fauna':S.P?'Flora':'—'} (${r.length})</h3>`+
+ r.map(([a,i])=>`<div class="ic" onclick="show(${i})"><div class="photo" id="c${i}">${a[3]}</div><b>${a[1]}</b><div class="lat" style="margin:0">${a[2]}</div><span class="badge" style="background:${ST[a[5]][1]}">${ST[a[5]][0]} (${a[5]})</span><div class="sm" style="font-size:.88rem">${a[10]}</div></div>`).join('')+
+ '<div class="sm">Sumber area terbakar: MapBiomas Fire Indonesia.</div>';
+ r.forEach(([a,i])=>photo(a[8],document.getElementById('c'+i),a[3],a[1]))}
+/* bar per pulau */
+document.getElementById('bars').innerHTML=Object.entries(IS).sort((a,b)=>b[1][0]-a[1][0]).map(([k,v])=>`<div class="bar"><span>${k}</span><div><i style="width:${(v[0]-v[1])/1731.97}%"></i><i class="g" style="width:${v[1]/1731.97}%"></i></div><b>${fmt(v[0])}</b></div>`).join('');
+/* toolbar filter */
+const fl=document.getElementById('fl');
+fl.innerHTML=`<div class="seg"><button class="chip on" data-k="F">🐾 Fauna</button><button class="chip on" data-k="P">🌿 Flora</button></div>
+<select id="sp" class="sel"><option value="">Semua pulau</option>${ISL.map(x=>`<option>${x}</option>`).join('')}</select>
+<select id="ss" class="sel"><option value="">Semua status IUCN</option><option value="TT">Terancam punah (CR+EN+VU)</option><option value="CR">Kritis</option><option value="EN">Terancam</option><option value="VU">Rentan</option></select>
+<select id="fp" class="sel"><option value="7">🔥 Titik panas: 7 hari</option><option value="48">🔥 48 jam</option><option value="24">🔥 24 jam</option><option value="">🔥 Sembunyikan</option></select><button class="chip on" id="bl" onclick="tgl()">☰ Daftar</button><button class="chip" onclick="openSt(0)">📖 Mode cerita</button>`;
+fl.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{S[b.dataset.k]=S[b.dataset.k]?0:1;b.classList.toggle('on',!!S[b.dataset.k]);apply()});
+document.getElementById('fp').onchange=e=>{setFire(e.target.value);if(sm&&document.getElementById('st').classList.contains('on'))openSt(si)};
+document.getElementById('sp').onchange=e=>pick(e.target.value);
+document.getElementById('ss').onchange=e=>{S.s=e.target.value;apply()};
+apply();
+/* langkah mitigasi */
+const ST5=[
+["Akui krisis & buka data",["Tetapkan karhutla sebagai <b>bencana nasional</b>","Berhenti menyangkal bahwa kondisi sudah membaik","Buat <b>dashboard harian</b> terbuka seperti saat COVID-19","Pasang sensor peringatan dini saat lahan gambut terbakar"],'<div class="box ex"><b>Apa itu bencana nasional?</b> Status tingkat bencana yang ditetapkan <b>Presiden</b> (provinsi oleh gubernur, kabupaten/kota oleh bupati/wali kota). Penentuannya mengacu UU No. 24/2007 dan PP No. 21/2008 dengan lima indikator: <b>jumlah korban, kerugian harta benda, kerusakan prasarana & sarana, cakupan luas wilayah terdampak, dan dampak sosial-ekonomi</b>. Bila ditetapkan, pemerintah pusat memimpin penanganan dan dapat memobilisasi sumber daya nasional.</div>'],
+["Selamatkan nyawa",["Perkuat puskesmas (ISPA dan kasus berat)","Prioritaskan kelompok rentan: bayi, balita, lansia, penyandang disabilitas, ibu hamil","Kirim oksigen, masker, nebulizer; siapkan rumah/tempat relokasi","Semua rujukan ditanggung negara","Sediakan APD dan insentif untuk tenaga kesehatan"]],
+["Lindungi siswa & ekonomi",["Sekolah beralih ke pembelajaran jarak jauh (PJJ)","Insentif guru rentan (termasuk guru swasta yang tak dibayar bila tidak mengajar)","Perhatian khusus siswa yang orang tuanya terdampak","Insentif UMKM yang kehilangan pemasukan","Hidupkan skema dana PEN seperti saat COVID-19"]],
+["Kembalikan uang daerah & beri kewenangan",["Kembalikan transfer daerah dan DBH","Alihkan sementara anggaran MBG dan kopdes","Bentuk dana abadi bencana","Serahkan sebagian kewenangan kehutanan ke pemda terdekat lokasi bencana","Masukkan mitigasi bencana ke dalam rencana pembangunan"]],
+["Pulihkan lahan gambut",["Gambut rusak karena izin dari pusat; pemberi izin harus bertanggung jawab","Sekat dan tutup kanal agar gambut tetap basah","Paksa perusahaan perusak keluar dari area gambut","Tidak ada izin baru di lahan gambut"]]];
+document.getElementById('steps').innerHTML=ST5.map((s,i)=>`<div class="card step ${i?'':'open'}" onclick="this.classList.toggle('open')"><div class="num">0${i+1}</div><div><h3>${s[0]}</h3><ul>${s[1].map(x=>'<li>'+x+'</li>').join('')}</ul>${s[2]||''}</div></div>`).join('')+
+`<div class="grid"><div class="card"><h3 style="margin-top:0">⏳ Jangka menengah</h3><ul><li>Integrasikan kerja kementerian (kesehatan manusia, lingkungan, dan satwa ditangani bersama)</li><li>Bangun sistem peringatan dini</li><li>Ambil kebijakan berbasis data</li></ul></div><div class="card"><h3 style="margin-top:0">🌱 Jangka panjang</h3><ul><li>Masukkan indeks risiko bencana ke RPJMN/RPJMD dan APBD agar mitigasi dianggarkan sebelum kejadian</li><li>Padukan kearifan lokal dan teknologi</li><li>Perbaiki nalar sains siswa agar generasi mendatang pro-lingkungan</li></ul></div></div><div class="card"><b>Refleksi:</b> Langkah mana yang bisa dilakukan pelajar? Mana yang tanggung jawab pemerintah dan perusahaan?</div>`;
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,section').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');
+ setTimeout(()=>map.invalidateSize(),60)});
+</script>
+</body>
+</html>
